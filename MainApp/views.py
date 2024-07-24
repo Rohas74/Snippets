@@ -16,7 +16,8 @@ def add_snippet_page(request):
 
 def snippets_page(request):
     snipp = Snippet.objects.all()
-    context = {"items": snipp,}
+    num_of_snipps = len(snipp)
+    context = {"items": snipp, "quantity": num_of_snipps}
     return render(request, 'pages/view_snippets.html', context)
 
 def view_curr_snippet(request, item_id):
