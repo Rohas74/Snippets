@@ -5,6 +5,19 @@ from MainApp.models import Snippet
 from django.core.exceptions import ObjectDoesNotExist
 from MainApp.forms import SnippetForm
 
+def dell_snippet(request, item_id):
+    try:
+        snip = Snippet.objects.get(id=item_id)
+    except ObjectDoesNotExist:
+        context = {"items": snip, "type": True}
+        return render(request, "pages/errors.html", context | {"error": f"Item with id={item_id} not found."})
+    else:
+        if request.method == "POST":
+            form = SnippetForm(request.POST)
+            snip.delete(item_id)
+            return redirect("pages/view_snippets.html")
+    return render(request,'pages/view_snippet.html',{'form': form})
+
 
 def create_snippet(request):
    if request.method == "POST":
@@ -42,6 +55,5 @@ def view_curr_snippet(request, item_id):
     except ObjectDoesNotExist:
         return render(request, "pages/errors.html", context | {"error": f"Item with id={item_id} not found."})
     else:
-        context = {"items": cur_snip,}
+        context = {"items": cur_snip, "type": True}
         return render(request, 'pages/view_snippet.html', context)
-

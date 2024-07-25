@@ -10,7 +10,7 @@ class SnippetForm(ModelForm):
        labels = {'name': '', 'lang': '', 'code': ''}
        widgets = {
            'name': TextInput(
-               attrs={"class":"form-control",'style': 'max-width: 350px',"placeholder":"Название сниппета"}
+               attrs={"class":"form-control form-control-lg",'style': 'max-width: 350px',"placeholder":"Название сниппета"}
                ),
            'code': Textarea(
                attrs={"class":"form-control",'style': 'max-width: 350px',"placeholder":"Код сниппета"}
