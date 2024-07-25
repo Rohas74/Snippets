@@ -27,19 +27,11 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Название</th>
-                        <th scope="col">Язык</th>
                         <th scope="col">Дата создания</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for item in items %}
-                        <tr>
-                            <td scope="row">{{ item.id }}</td>
-                            <td><a href="{% url 'snip_detail' item.id %}">{{ item.name }}</a></td>
-                            <td scope="row">{{ item.lang }}</td>
-                            <td>{{ item.creation_date | date:"Y-m-d H-m-s"}}</td>
-                        </tr>
-                    {% endfor %}
+                   {{ pagename }}
                     </tbody>
                 </table>
                 <div align="right">
