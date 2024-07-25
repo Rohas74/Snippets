@@ -13,10 +13,8 @@ def dell_snippet(request, item_id):
         return render(request, "pages/errors.html", context | {"error": f"Item with id={item_id} not found."})
     else:
         if request.method == "POST":
-            form = SnippetForm(request.POST)
-            snip.delete(item_id)
+            snip.delete()
             return redirect("pages/view_snippets.html")
-    return render(request,'pages/view_snippet.html',{'form': form})
 
 
 def create_snippet(request):
