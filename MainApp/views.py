@@ -10,6 +10,7 @@ def index_page(request):
 
 
 def add_snippet_page(request):
+    #Snippet.objects.create(name='Функция ввода данныхы', lang="py", code='def my_input(): a = input(str) return a')
     context = {'pagename': 'Добавление нового сниппета'}
     return render(request, 'pages/add_snippet.html', context)
 
