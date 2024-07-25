@@ -6,13 +6,13 @@ from django.core.exceptions import ObjectDoesNotExist
 from MainApp.forms import SnippetForm
 
 def change_snippet(request, item_id):
+    context = {'pagename': 'Редактирование снипета'}
     try:
         snip = Snippet.objects.get(id=item_id)
     except ObjectDoesNotExist:
-        context = {"items": snip, "type": True}
-        return render(request, "pages/errors.html", context | {"error": f"Item with id={item_id} not found."})
+       
     else:
-        snip.delete()
+        snip.save()
         return redirect("view_snip")
 
 
