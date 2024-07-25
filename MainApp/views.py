@@ -5,6 +5,17 @@ from MainApp.models import Snippet
 from django.core.exceptions import ObjectDoesNotExist
 from MainApp.forms import SnippetForm
 
+def change_snippet(request, item_id):
+    try:
+        snip = Snippet.objects.get(id=item_id)
+    except ObjectDoesNotExist:
+        context = {"items": snip, "type": True}
+        return render(request, "pages/errors.html", context | {"error": f"Item with id={item_id} not found."})
+    else:
+        snip.delete()
+        return redirect("view_snip")
+
+
 def dell_snippet(request, item_id):
     try:
         snip = Snippet.objects.get(id=item_id)
@@ -12,9 +23,8 @@ def dell_snippet(request, item_id):
         context = {"items": snip, "type": True}
         return render(request, "pages/errors.html", context | {"error": f"Item with id={item_id} not found."})
     else:
-        if request.method == "POST":
-            snip.delete()
-            return redirect("pages/view_snippets.html")
+        snip.delete()
+        return redirect("view_snip")
 
 
 def create_snippet(request):
